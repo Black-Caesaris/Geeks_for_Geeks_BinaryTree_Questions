@@ -1,0 +1,23 @@
+/* Tree node structure  used in the program
+ struct Node
+ {
+     int data;
+     Node* left, *right;
+}; */
+
+/* Computes the height of binary tree with given root.  */
+#define MAX(a, b)((a>b)?a:b)
+
+int height(Node* node)
+{
+    if(node == NULL)
+    {
+        return 0;
+    }
+    int lh = height(node->left);
+    int rh = height(node->right);
+    
+    return MAX(lh, rh) + 1 ;
+    
+   // Your code here
+}
