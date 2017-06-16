@@ -1,0 +1,42 @@
+
+
+/* Structure of Node
+struct Node
+{
+    int data;
+    Node* left;
+    Node* right;
+};*/
+
+/* The function should print all the paths from root
+ to leaf nodes of the binary tree */
+ void printss(vector<int> &v){
+     for(auto c : v){
+         cout<<c<<" ";
+     }
+ }
+ void printlol(Node* root, vector<int> &v){
+    
+  if(root==NULL)return;
+    
+    v.push_back(root->data);
+    printlol(root->left, v);
+    printlol(root->right, v);
+    
+    if(root->left == NULL && root->right == NULL){
+        printss(v);
+        cout<<"#";
+        
+    }
+    
+    v.pop_back();
+    
+ }
+void printPaths(Node* root)
+{   
+    vector<int> v;
+    
+   printlol(root, v);
+   cout<<endl;
+    // Code here
+}
