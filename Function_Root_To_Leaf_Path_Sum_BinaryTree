@@ -1,0 +1,55 @@
+/* A binary tree node
+struct Node
+{
+    int data;
+    Node* left, * right;
+}; */
+
+#include<queue>
+
+/*you are required to 
+complete this function */
+int getSum(vector<int> &v){
+    //vector<int>::iterator c;
+    int sum = 0;
+    
+    for(int i = 0 ; i< v.size() ; i++){
+        sum+=v[i];
+    }
+    
+    return sum;
+    
+}
+bool hasPath(Node *node, int sum, vector<int> &v)
+{   
+    //vector<int> v ;
+    int sums;
+    if(node == NULL)
+        return 0;
+    v.push_back(node->data);
+    bool x = hasPath(node->left, sum, v);
+    bool y = hasPath(node->right, sum , v);
+    
+    if(node->left ==NULL && node->right == NULL){
+        
+        sums =getSum(v);
+        
+        if(sums == sum){
+            return 1 ;}
+    }
+            
+            v.pop_back();
+            //return x||y;
+            return (x||y);
+        
+        }
+   
+
+ //Your code here
+
+
+bool hasPathSum(Node* node, int sum){
+    vector<int> v;
+    return hasPath(node, sum, v);
+    
+}
