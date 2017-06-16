@@ -1,0 +1,21 @@
+/* Tree node structure  used in the program
+ struct Node
+ {
+     int data;
+     Node* left;
+     Node* right;
+}; */
+
+/* Computes the number of nodes in a tree. */
+int getSize(Node* node)
+{
+    if(node==NULL){
+        return 0;
+    }
+    int sizel = getSize(node->left);
+    int sizer = getSize(node->right);
+    
+    return (sizel + 1 + sizer);
+    
+   // Your code here
+}
