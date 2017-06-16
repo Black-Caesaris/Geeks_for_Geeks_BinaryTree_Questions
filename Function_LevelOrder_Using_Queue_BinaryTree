@@ -1,0 +1,41 @@
+#include<queue>
+
+/* A binary tree Node
+struct Node
+{
+    int data;
+    Node* left, * right;
+}; */
+
+//You are required to complete this method
+void levelOrder(Node* node)
+{   
+    queue<Node*> q;
+    
+    
+    if(node == NULL){
+        return;
+    }
+    
+    q.push(node);
+    
+    while(!q.empty()){
+            Node* temp = q.front();
+            q.pop();
+            cout<<temp->data<<" ";
+            if(temp->left!=NULL){
+            q.push(temp->left);
+            }
+            if(temp->right!=NULL){
+            q.push(temp->right);
+            }
+    }
+    
+    
+
+    
+    
+  //Your code here
+}
+
+
