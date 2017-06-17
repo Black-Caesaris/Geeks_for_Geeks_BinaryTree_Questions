@@ -1,0 +1,61 @@
+/*  Tree node
+struct Node
+{
+    int data;
+    Node* left, * right;
+}; */
+
+// Should return true if tree is Sum Tree, else false
+int sumSubTree(Node* root, int &sum){
+    if(root==NULL)
+        return 0;
+    else{
+        sum+=root->data;
+        sumSubTree(root->left, sum);
+        sumSubTree(root->right, sum);
+        
+    }
+    return sum;
+    
+}
+bool isSumTree(Node* root)
+{   
+    int sum1 = 0;
+    int sum2 = 0;
+    if(root == NULL)
+        return true;
+    
+    if(root->left == NULL && root->right == NULL)
+        return true;
+   /* else if(root->left!=NULL && root>right!=NULL){
+        if(root->data = (root->left->data + root->right->data));
+            return true;
+        else
+            return false;
+    }
+    else if(root->left!=NULL && root->right ==NULL){
+        if(root->left->data == root->data){
+            return true;
+        }
+        else
+            return false;
+    }
+    else if(root->left==NULL && root->right!=NULL){
+        if(root->right->data == root->data){
+            return true;
+        }
+        else
+            return false;
+    }
+    */
+    int lsum = sumSubTree(root->left, sum1);
+    int rsum = sumSubTree(root->right, sum2);
+    //cout<<lsum<<" "<<rsum<<" ";
+     //   cout<<endl;
+    if(root->data == lsum + rsum && isSumTree(root->left) && isSumTree(root->right))
+    return true;
+    else
+    return false;
+    
+     // Your code here
+}
