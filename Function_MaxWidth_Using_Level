@@ -1,0 +1,53 @@
+/*  Structure of a Binary Tree 
+struct Node
+{
+    int data;
+    Node* left, *right;
+}; */
+
+/* Function to get the maximum width of a binary tree*/
+#define MAX(a,b)((a>b)?a:b)
+
+int height(Node* node){
+    if(node == NULL)
+    return 0;
+    
+    int lh = height(node->left);
+    int rh = height(node->right);
+    
+    return MAX(lh,rh) + 1;
+    
+}
+int countGivenLevel(Node* node, int level){
+    
+    if(node == NULL)
+    return 0;
+    if(level == 0){
+        //count++;
+        return 1;
+    }
+    int l = countGivenLevel(node->left, level - 1 );
+    int  h = countGivenLevel(node->right, level - 1);
+    
+    return (l+h);
+    
+    
+}
+int getMaxWidth(Node* root)
+{   
+    int ht = height(root);
+    //cout<<ht;
+    //vector<int> widths;
+    int maxwidth = 0;
+    int currwidth = 0;
+    int count = 0;
+    
+   for(int i =0 ; i<ht ; i++ ){
+       
+       currwidth = countGivenLevel(root, i);
+       //cout<<currwidth<<" ";
+       maxwidth = MAX(maxwidth, currwidth);
+       //count = 0;
+   }
+   return maxwidth;
+}
