@@ -1,0 +1,52 @@
+/*
+Structure of a node is as following
+struct Node
+{
+     int data;
+     struct Node* left;
+     struct Node* right;
+};
+*/
+// Function should print all the ancestor of the target node
+void prints(vector<int> &v){
+    for(int i = v.size() -1  ;  i >=0 ; i--){
+        cout<<v[i]<<" ";
+    }
+}
+bool printAncestors1(struct Node *root, int target, vector<int> &v)
+{       
+    if(root == NULL)
+    return 0;
+    
+    v.push_back(root->data);
+    if(root->left!=NULL)
+    {
+        if(root->left->data == target){
+        prints(v);
+        //cout<<endl;
+        return 1;
+    }
+    }
+    if(root->right!=NULL)
+    {
+        if(root->right->data == target){
+        prints(v);
+        //cout<<endl;
+        return 1;
+    }
+    }
+    
+    
+    printAncestors1(root->left, target,v);
+    printAncestors1(root->right, target,v);
+    
+    v.pop_back();
+     
+    // Code here   
+}
+bool printAncestors(struct Node *node, int target){
+    vector<int> v;
+    
+    printAncestors1(node, target, v);
+    cout<<endl;
+}
