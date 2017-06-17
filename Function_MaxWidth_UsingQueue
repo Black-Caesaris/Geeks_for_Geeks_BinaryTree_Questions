@@ -1,0 +1,46 @@
+//USING QUEUES
+#include<queue>
+/*  Structure of a Binary Tree 
+struct Node
+{
+    int data;
+    Node* left, *right;
+}; */
+#define MAX(a,b)((a>b)?a:b)
+/* Function to get the maximum width of a binary tree*/
+int getMaxWidth(Node* root)
+{   
+    if(root==NULL)
+        return 0;
+        
+    queue<Node*> q;
+    q.push(root);
+    int result = 0;
+    int count;
+    
+    while(!q.empty()){
+        count = q.size();
+        result = MAX(count,result);
+        
+        while(count--){
+            
+            Node* temp = q.front();
+            q.pop();
+            
+            if(temp->left!=NULL){
+                q.push(temp->left);
+            }
+            if(temp->right!=NULL){
+                q.push(temp->right);
+            }
+            
+            
+            
+        }
+        
+        
+    }
+    return result;
+    
+   // Your code here
+}
