@@ -1,0 +1,48 @@
+/* A binary tree node has data, pointer to left child
+   and a pointer to right child 
+struct Node
+{
+    int data;
+    Node* left;
+    Node* right;
+}; */
+
+
+
+/* Should print vertical order such that each vertical line
+   is separated by $ */
+void getDistanceList(Node* root, int hd, map<int, vector<int> > &mapp)
+{
+    if(root == NULL)
+        return;
+    else
+    {
+        mapp[hd].push_back(root->data);
+        getDistanceList(root->left, hd - 1 , mapp);
+        getDistanceList(root->right, hd + 1 , mapp);
+        
+    }
+}
+void verticalOrder(Node *root)
+{   
+    if(root == NULL)
+        return;
+    int hd = 0;
+    vector<int>::iterator vi;
+    
+    map<int, vector<int> > mapp;
+    
+    getDistanceList(root, hd, mapp);
+    
+    map<int, vector<int> >::iterator mi;
+    mi = mapp.begin();
+    
+    while(mi!=mapp.end()){
+        for(vi = mi->second.begin() ; vi!= mi->second.end() ; vi++){
+            cout<<*vi<<" ";
+        }
+        cout<<"$";
+        mi++;
+    }
+    //Your code here
+}
